@@ -5,7 +5,7 @@
 	$html .= '<tr>';
 	$html .= '<th>CURSO</th>';
 	$html .= '<th>CENTRO</th>';
-	$html .= '<th>DIMENSÕES</th>';
+	$html .= '<th>DIMENSÃ•ES</th>';
 	$html .= '</tr>';
 	$html .= '</thead>';
 	$html .= '<tbody>';
@@ -30,16 +30,16 @@
 	$dompdf = new DOMPDF();
 	// Carrega seu HTML
 	$dompdf->load_html('
-			<h1 style="text-align: center;">Relatório de Membros - CPA</h1>
+			<h1 style="text-align: center;">Consulta de RelÃ¡torio - MEC</h1>
 			'. $html .'
 		');
 	//Renderizar o html
 	$dompdf->render();
-	//Exibibir a página
+	//Exibibir a pÃ¡gina
 	$dompdf->stream(
-		"relatorio_membros_cpa.pdf", 
+		"consulta_relatorio_mec.pdf", 
 		array(
-			"Attachment" => false //Para realizar o download somente alterar para true
+			"Attachment" => true //Para bloquear o download somente alterar para false
 		)
 	);
 ?>
