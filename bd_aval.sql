@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 09-Ago-2018 às 17:48
+-- Generation Time: 10-Ago-2018 às 03:49
 -- Versão do servidor: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -129,7 +129,7 @@ CREATE TABLE `dimensao_3` (
   `id_avaliacao` bigint(20) NOT NULL,
   `id_campus` bigint(20) NOT NULL,
   `id_unid_acad` bigint(20) NOT NULL,
-  `id_curso` int(11) NOT NULL,
+  `id_curso` bigint(20) NOT NULL,
   `D3.1` int(1) NOT NULL,
   `D3.2` int(1) NOT NULL,
   `D3.3` int(1) NOT NULL,
@@ -163,10 +163,7 @@ CREATE TABLE `dimensao_3` (
 CREATE TABLE `instru_avaliacao` (
   `id` bigint(20) NOT NULL,
   `descricao` varchar(100) DEFAULT NULL,
-  `data_criacao` datetime(6) NOT NULL,
-  `id_D1` bigint(20) NOT NULL,
-  `id_D2` bigint(20) NOT NULL,
-  `id_D3` bigint(20) NOT NULL
+  `data_criacao` datetime(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -206,16 +203,32 @@ ALTER TABLE `curso`
 ALTER TABLE `dimensao_1`
   ADD PRIMARY KEY (`id_avaliacao`,`id_campus`,`id_unid_acad`,`id_curso`),
   ADD KEY `id_campus` (`id_campus`),
-  ADD KEY `id_unid_acad` (`id_unid_acad`);
+  ADD KEY `id_unid_acad` (`id_unid_acad`),
+  ADD KEY `id_curso` (`id_curso`);
+
+--
+-- Indexes for table `dimensao_2`
+--
+ALTER TABLE `dimensao_2`
+  ADD PRIMARY KEY (`id_avaliacao`,`id_campus`,`id_unid_acad`,`id_curso`),
+  ADD KEY `id_campus` (`id_campus`),
+  ADD KEY `id_unid_acad` (`id_unid_acad`),
+  ADD KEY `id_curso` (`id_curso`);
+
+--
+-- Indexes for table `dimensao_3`
+--
+ALTER TABLE `dimensao_3`
+  ADD PRIMARY KEY (`id_avaliacao`,`id_campus`,`id_unid_acad`,`id_curso`),
+  ADD KEY `id_campus` (`id_campus`),
+  ADD KEY `id_unid_acad` (`id_unid_acad`),
+  ADD KEY `id_curso` (`id_curso`);
 
 --
 -- Indexes for table `instru_avaliacao`
 --
 ALTER TABLE `instru_avaliacao`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_D1` (`id_D1`),
-  ADD KEY `id_D2` (`id_D2`),
-  ADD KEY `id_D3` (`id_D3`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `unid_acad`
@@ -269,7 +282,26 @@ ALTER TABLE `curso`
 ALTER TABLE `dimensao_1`
   ADD CONSTRAINT `dimensao_1_ibfk_1` FOREIGN KEY (`id_avaliacao`) REFERENCES `instru_avaliacao` (`id`),
   ADD CONSTRAINT `dimensao_1_ibfk_2` FOREIGN KEY (`id_campus`) REFERENCES `campus` (`id`),
-  ADD CONSTRAINT `dimensao_1_ibfk_3` FOREIGN KEY (`id_unid_acad`) REFERENCES `unid_acad` (`id`);
+  ADD CONSTRAINT `dimensao_1_ibfk_3` FOREIGN KEY (`id_unid_acad`) REFERENCES `unid_acad` (`id`),
+  ADD CONSTRAINT `dimensao_1_ibfk_4` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id`);
+
+--
+-- Limitadores para a tabela `dimensao_2`
+--
+ALTER TABLE `dimensao_2`
+  ADD CONSTRAINT `dimensao_2_ibfk_1` FOREIGN KEY (`id_avaliacao`) REFERENCES `instru_avaliacao` (`id`),
+  ADD CONSTRAINT `dimensao_2_ibfk_2` FOREIGN KEY (`id_campus`) REFERENCES `campus` (`id`),
+  ADD CONSTRAINT `dimensao_2_ibfk_3` FOREIGN KEY (`id_unid_acad`) REFERENCES `unid_acad` (`id`),
+  ADD CONSTRAINT `dimensao_2_ibfk_4` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id`);
+
+--
+-- Limitadores para a tabela `dimensao_3`
+--
+ALTER TABLE `dimensao_3`
+  ADD CONSTRAINT `dimensao_3_ibfk_1` FOREIGN KEY (`id_avaliacao`) REFERENCES `instru_avaliacao` (`id`),
+  ADD CONSTRAINT `dimensao_3_ibfk_2` FOREIGN KEY (`id_campus`) REFERENCES `campus` (`id`),
+  ADD CONSTRAINT `dimensao_3_ibfk_3` FOREIGN KEY (`id_unid_acad`) REFERENCES `unid_acad` (`id`),
+  ADD CONSTRAINT `dimensao_3_ibfk_4` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id`);
 
 --
 -- Limitadores para a tabela `unid_acad`
