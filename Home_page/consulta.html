@@ -67,34 +67,79 @@
               
               
         </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
-    </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    
-<br>
-        <br><br>
-        <br>
-      <br>
-        <br>
-      <br>
-        <br><br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-    
-<br>
-        <br><br>
-        <br>
-      <br>
-      <br>
+    <br>
+    <br>
+    <br>
+
+    <style type="text/css">
+      #div_consulta{
+        position: relative;
+        top: 8%;
+        text-align: center;
+      }
+      #center-button-clear{
+        position: relative;
+        text-align:center;
+        margin-right: 40px;
+      }
+      #center-button-submit{
+        position: relative;
+        text-align:center;
+      }
+      .form-control{
+        width: 600px;
+        margin: auto;
+      }
+    </style>
+
+    <div id="div_consulta" class=container>
+      <h3>Consulta de Avaliação Externa</h3><br>
+
+    <?php include_once("conexao.php"); ?>
+    <div class="form-group text-center">
+    <form class="form-horizontal" method="POST" action="salvar_post.php" role="form">
+
+      <select class="form-control" name="id_campus" id="id_campus">
+        <option value="">Campus</option>
+        <?php
+          $result_cat_post = "SELECT * FROM categorias_post ORDER BY nome_categoria";
+          $resultado_cat_post = mysqli_query($conn, $result_cat_post);
+          while($row_cat_post = mysqli_fetch_assoc($resultado_cat_post) ) {
+            echo '<option value="'.$row_cat_post['id'].'">'.$row_cat_post['nome_categoria'].'</option>';
+          }
+        ?>
+      </select><br><br>
+
+      <select class="form-control" name="id_unid_academica" id="id_unid_academica">
+        <option value="">Unidade Acadêmica</option>
+      </select><br><br>
+
+      <select class="form-control" name="id_curso" id="id_curso">
+        <option value="">Curso</option>
+      </select><br><br>
+
+      <select class="form-control" name="id_data_avaliacao" id="id_data_avaliacao">
+        <option value="">Avaliação/Data</option>
+      </select><br><br>
+      
+    </form>
+</div>
+
+      <button id= center-button-clear type="reset" class="btn btn-reset">Limpar</button>
+      <button id= center-button-submit type="submit" class="btn btn-success">Consultar</button>
+
+
+
+    </div><br><br><br><br><br><br>
+
+
+
+
+
+
 		<div id="footerwrap">
 			<div class="container">
 				<h4>Criado por Daniel Amaral</a> - Copyright 2018</h4>

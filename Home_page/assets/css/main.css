@@ -345,6 +345,7 @@ a:after {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #ddd;
 	text-align: center;
+    vertical-align: bottom;
 }
 
 #footerwrap h4 {
